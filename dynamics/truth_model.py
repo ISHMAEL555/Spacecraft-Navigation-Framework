@@ -1,7 +1,7 @@
 import numpy as np
 
-from attitude_kinematics import propagate_rk4
-from quaternion import quaternion_to_dcm
+from .attitude_kinematics import propagate_rk4
+from .quaternion import quaternion_to_dcm
 
 
 class TruthModel:
@@ -41,7 +41,7 @@ class TruthModel:
 
     def get_dcm(self):
         """
-        Returns the current true direction cosine matrix.
+        Returns the current true Direction Cosine Matrix.
         """
         return quaternion_to_dcm(self.q)
 
