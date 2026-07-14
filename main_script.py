@@ -1,9 +1,9 @@
 import numpy as np
 
-from dcm import euler_to_dcm
-from TRIAD_Method import triad
-from Devonports_q_method import q_method
-from QUEST_method import quest
+from attitude_determination.dcm import euler_to_dcm
+from attitude_determination.TRIAD_Method import triad
+from attitude_determination.Devonports_q_method import q_method
+from attitude_determination.QUEST_method import quest
 
 # -------------------------------------------------------------------------
 # True Attitude
@@ -102,7 +102,7 @@ print("\n QUEST Estimated DCM [B_est N]")
 print(B_est_N)
 
 
-from OLAE_Method import olae
+from attitude_determination.OLAE_Method import olae
 
 
 # -------------------------------------------------------------------------

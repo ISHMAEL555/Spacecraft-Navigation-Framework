@@ -1,0 +1,52 @@
+import numpy as np
+
+from attitude_kinematics import propagate_rk4
+from quaternion import quaternion_to_dcm
+
+
+class TruthModel:
+    """
+    Spacecraft attitude truth model.
+
+    Propagates the true spacecraft attitude using the prescribed
+    body angular velocity.
+    """
+
+    def __init__(self, q0, omega):
+
+        self.q = np.asarray(q0, dtype=float)
+        self.omega = np.asarray(omega, dtype=float)
+
+    def propagate(self, dt):
+        """
+        Propagate the truth model by one time step.
+
+        Parameters
+        ----------
+        dt : float
+            Simulation time step [s].
+        """
+
+        self.q = propagate_rk4(
+            self.q,
+            self.omega,
+            dt
+        )
+
+    def get_quaternion(self):
+        """
+        Returns the current true quaternion.
+        """
+        return self.q.copy()
+
+    def get_dcm(self):
+        """
+        Returns the current true direction cosine matrix.
+        """
+        return quaternion_to_dcm(self.q)
+
+    def get_angular_velocity(self):
+        """
+        Returns the true body angular velocity.
+        """
+        return self.omega.copy()
