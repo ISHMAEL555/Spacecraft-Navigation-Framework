@@ -2,11 +2,11 @@ import numpy as np
 
 from dynamics.truth_model import TruthModel
 
-from sensors.vector.sun_sensor import SunSensor
-from sensors.vector.magnetometer import Magnetometer
+from sensors.absolute.sun_sensor import SunSensor
+from sensors.absolute.magnetometer import Magnetometer
 from sensors.sensor_manager import SensorManager
 
-from attitude_determination.OLAE_Method import olae
+from attitude_determination.Devonports_q_method import q_method
 
 
 # ==========================================================
@@ -94,10 +94,10 @@ V_B, V_N, w = manager.get_vector_observations(
 
 
 # ==========================================================
-# OLAE
+# Davenport q-Method
 # ==========================================================
 
-s, d, S, W, STWS, STWd, q_crp, B_est_N = olae(
+B, sigma, S, Z, K, Eigenvalues, Eigenvectors, q, B_est_N = q_method(
     V_N,
     V_B,
     w,

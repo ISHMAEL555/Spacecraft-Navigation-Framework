@@ -2,8 +2,8 @@ import numpy as np
 
 from dynamics.truth_model import TruthModel
 
-from sensors.vector.sun_sensor import SunSensor
-from sensors.vector.magnetometer import Magnetometer
+from sensors.absolute.sun_sensor import SunSensor
+from sensors.absolute.magnetometer import Magnetometer
 from sensors.sensor_manager import SensorManager
 
 from attitude_determination.TRIAD_Method import triad

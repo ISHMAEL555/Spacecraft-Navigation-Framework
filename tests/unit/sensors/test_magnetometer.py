@@ -1,21 +1,21 @@
 import numpy as np
 
 from dynamics.truth_model import TruthModel
-from sensors.vector.sun_sensor import SunSensor
+from sensors.absolute.magnetometer import Magnetometer
 
 
 # =============================================================================
 # TC-001
 # Requirement:
-# SunSensor shall initialize with the specified reference vector and noise.
+# Magnetometer shall initialize with the specified reference vector and noise.
 # =============================================================================
 
-def test_sun_sensor_initialization():
+def test_magnetometer_initialization():
 
-    reference = np.array([1.0, 0.0, 0.0])
+    reference = np.array([0.0, 1.0, 0.0])
     noise_std = 0.001
 
-    sensor = SunSensor(
+    sensor = Magnetometer(
         reference_vector=reference,
         noise_std=noise_std
     )
@@ -46,8 +46,8 @@ def test_identity_attitude():
         np.zeros(3)
     )
 
-    sensor = SunSensor(
-        reference_vector=np.array([1.0, 0.0, 0.0]),
+    sensor = Magnetometer(
+        reference_vector=np.array([0.0, 1.0, 0.0]),
         noise_std=0.0
     )
 
@@ -55,7 +55,7 @@ def test_identity_attitude():
 
     assert np.allclose(
         measurement,
-        np.array([1.0, 0.0, 0.0]),
+        np.array([0.0, 1.0, 0.0]),
         atol=1e-12
     )
 
@@ -73,8 +73,8 @@ def test_measurement_normalized():
         np.zeros(3)
     )
 
-    sensor = SunSensor(
-        reference_vector=np.array([1.0, 0.0, 0.0]),
+    sensor = Magnetometer(
+        reference_vector=np.array([0.0, 1.0, 0.0]),
         noise_std=0.01
     )
 
@@ -100,8 +100,8 @@ def test_measurement_dimension():
         np.zeros(3)
     )
 
-    sensor = SunSensor(
-        reference_vector=np.array([1.0, 0.0, 0.0])
+    sensor = Magnetometer(
+        reference_vector=np.array([0.0, 1.0, 0.0])
     )
 
     measurement = sensor.measure(truth)
@@ -122,7 +122,7 @@ def test_repeatability_without_noise():
         np.zeros(3)
     )
 
-    sensor = SunSensor(
+    sensor = Magnetometer(
         reference_vector=np.array([0.3, 0.4, 0.5]),
         noise_std=0.0
     )
@@ -150,8 +150,8 @@ def test_measurements_are_finite():
         np.zeros(3)
     )
 
-    sensor = SunSensor(
-        reference_vector=np.array([1.0, 0.0, 0.0]),
+    sensor = Magnetometer(
+        reference_vector=np.array([0.0, 1.0, 0.0]),
         noise_std=0.01
     )
 
